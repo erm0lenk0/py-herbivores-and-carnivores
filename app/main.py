@@ -22,14 +22,14 @@ class Animal:
         if self.health > 0:
             self.health -= damage
             print(
-                f"{self.name} reserve {damage} damage! "
+                f"{self.name} received {damage} damage! "
                 f"Health {self.health} now."
             )
             if self.health <= 0:
                 self.die()
 
     def die(self) -> None:
-        print(f"{self.name} die.")
+        print(f"{self.name} died.")
         Animal.alive.remove(self)
 
 
@@ -43,6 +43,4 @@ class Carnivore(Animal):
 
     def bite(self, herbivore: Herbivore) -> None:
         if isinstance(herbivore, Herbivore) and not herbivore.hidden:
-            herbivore.health -= 50
-            if herbivore.health <= 0:
-                herbivore.die()
+            herbivore.take_damage(50)
